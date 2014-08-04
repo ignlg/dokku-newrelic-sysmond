@@ -34,9 +34,9 @@ if [[ $NEW_RELIC_SYSMOND_DOKKU -eq 1 ]]; then
 		## Configure & start the Server Monitor daemon
 		echo "-----> Running New Relic server monitoring"
 		### Add license key to config file: (See /etc/newrelic/nrsysmond.cfg for other config options)
-		nrsysmond-config --set "license_key=$NEW_RELIC_LICENSE_KEY" > /dev/null
+		nrsysmond-config --set "license_key=$NEW_RELIC_LICENSE_KEY"
 		### Start the daemon
-		/etc/init.d/newrelic-sysmond start > /dev/null
+		# /etc/init.d/newrelic-sysmond start
 	else
 		## License key not found
 		echo "       Warning: License key not found. Add NEW_RELIC_LICENSE_KEY to your environment variables."
