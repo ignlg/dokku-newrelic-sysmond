@@ -9,11 +9,11 @@ On your _dokku_ server:
 git clone https://github.com/ignlg/dokku-newrelic-sysmond.git /var/lib/dokku/plugins/newrelic-sysmond
 ```
 
-## Files
+## Setup
 
 `.newrelic-sysmond` file in the root directory of the application to run this plugin.
 
-## Environment variables
+### Environment variables
 
 `NEW_RELIC_SYSMOND_DOKKU` with `1` to run the daemon.
 
