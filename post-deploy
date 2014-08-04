@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
+
+APP="$1"
+IMAGE="dokku/$APP"
+PLUGIN_DIR=$(dirname $0)
+
+# Run script
+#id=$(docker run -d $IMAGE /bin/bash -c "/app/.run-sysmond")
+#docker attach "$DOKKU_ROOT/$APP/CONTAINER"
+
+# lxc-attach --name {containerid}
