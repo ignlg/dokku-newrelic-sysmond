@@ -14,7 +14,7 @@ test $(docker wait $id) -eq 0
 docker commit $id $IMAGE > /dev/null
 
 # Run script
-id=$(docker run-sysmond -d $IMAGE /bin/bash -c "chmod +x /app/.run-sysmond && /app/.run-sysmond")
+id=$(docker run -d $IMAGE /bin/bash -c "chmod +x /app/.run-sysmond && /app/.run-sysmond")
 docker attach $id
 test $(docker wait $id) -eq 0
 docker commit $id $IMAGE > /dev/null
