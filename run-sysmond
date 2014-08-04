@@ -23,20 +23,20 @@ if [[ $NEW_RELIC_SYSMOND_DOKKU -eq 1 ]]; then
 		### Configure the New Relic apt repository.
 		echo deb http://apt.newrelic.com/debian/ newrelic non-free >> /etc/apt/sources.list.d/newrelic.list
 		### Trust the New Relic GPG key.
-		wget -O- https://download.newrelic.com/548C16BF.gpg | apt-key add -
+		wget -O- https://download.newrelic.com/548C16BF.gpg | apt-key add - > /dev/null
 		### Update the local package list.
-		apt-get update
+		apt-get update > /dev/null
 
 		## Install the Server Monitor package
 		### Run the install command:
-		apt-get install newrelic-sysmond
+		apt-get install newrelic-sysmond > /dev/null
 
 		## Configure & start the Server Monitor daemon
 		echo "-----> Running New Relic server monitoring"
 		### Add license key to config file: (See /etc/newrelic/nrsysmond.cfg for other config options)
-		nrsysmond-config --set "license_key=$NEW_RELIC_LICENSE_KEY"
+		nrsysmond-config --set "license_key=$NEW_RELIC_LICENSE_KEY" > /dev/null
 		### Start the daemon
-		/etc/init.d/newrelic-sysmond start
+		/etc/init.d/newrelic-sysmond start > /dev/null
 	else
 		## License key not found
 		echo "       Warning: License key not found. Add NEW_RELIC_LICENSE_KEY to your environment variables."
