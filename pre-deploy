@@ -20,5 +20,6 @@ if [[ -f "$IMAGE/.newrelic-sysmond" ]]; then
 	test $(docker wait $id) -eq 0
 	docker commit $id $IMAGE > /dev/null
 else
+	ls "$IMAGE"
 	echo "-----> No .newrelic-sysmond file found; skipping New Relic server monitoring"
 fi
