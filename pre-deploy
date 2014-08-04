@@ -6,20 +6,15 @@ APP="$1"
 IMAGE="dokku/$APP"
 PLUGIN_DIR=$(dirname $0)
 
-if [[ -f "$IMAGE/.newrelic-sysmond" ]]; then
-	echo "-----> Installing New Relic server monitoring"
+echo "-----> Installing New Relic server monitoring"
 
-	# Inject script
-	id=$(cat "$PLUGIN_DIR/run-sysmond" | docker run -i -a stdin $IMAGE /bin/bash -c "cat > /app/.run-sysmond" )
-	test $(docker wait $id) -eq 0
-	docker commit $id $IMAGE > /dev/null
+# Inject script
+id=$(cat "$PLUGIN_DIR/run-sysmond" | docker run -i -a stdin $IMAGE /bin/bash -c "cat > /app/.run-sysmond" )
+test $(docker wait $id) -eq 0
+docker commit $id $IMAGE > /dev/null
 
-	# Run script
-	id=$(docker run-sysmond -d $IMAGE /bin/bash -c "chmod +x /app/.run-sysmond && /app/.run-sysmond")
-	docker attach $id
-	test $(docker wait $id) -eq 0
-	docker commit $id $IMAGE > /dev/null
-else
-	ls "$IMAGE"
-	echo "-----> No .newrelic-sysmond file found; skipping New Relic server monitoring"
-fi
+# Run script
+id=$(docker run-sysmond -d $IMAGE /bin/bash -c "chmod +x /app/.run-sysmond && /app/.run-sysmond")
+docker attach $id
+test $(docker wait $id) -eq 0
+docker commit $id $IMAGE > /dev/null

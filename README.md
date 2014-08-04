@@ -10,11 +10,8 @@ git clone https://github.com/ignlg/dokku-newrelic-sysmond.git /var/lib/dokku/plu
 ```
 
 ## Setup
-
-`.newrelic-sysmond` file in the root directory of the application to run this plugin.
-
 ### Environment variables
 
-`NEW_RELIC_SYSMOND_DOKKU` with `1` to run the daemon.
+`NEW_RELIC_SYSMOND_DOKKU` with `1` to install, set and run the daemon.
 
 `NEW_RELIC_LICENSE_KEY` with your New Relic License Key.

@@ -3,7 +3,6 @@
 # Installs and starts the New Relic's sysmond daemon
 #
 
-
 # app directory
 if [[ ! -d "/app" ]]; then
 	echo '       Error: No app found'
