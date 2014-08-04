@@ -6,13 +6,17 @@ APP="$1"
 IMAGE="dokku/$APP"
 PLUGIN_DIR=$(dirname $0)
 
-echo "-----> Installing New Relic Servers monitoring"
-# Inject script
-id=$(cat "$PLUGIN_DIR/run" | docker run -i -a stdin $IMAGE /bin/bash -c "cat > /app/.newrelic-sysmond" )
-test $(docker wait $id) -eq 0
-docker commit $id $IMAGE > /dev/null
-# Run script
-id=$(docker run -d $IMAGE /bin/bash -c "chmod +x /app/.newrelic-sysmond && /app/.newrelic-sysmond")
-docker attach $id
-test $(docker wait $id) -eq 0
-docker commit $id $IMAGE > /dev/null
+if [[ $NEW_RELIC_SYSMOND_DOKKU -eq 1 ]]; then
+
+	echo "-----> Installing New Relic Servers monitoring"
+	# Inject script
+	id=$(cat "$PLUGIN_DIR/run-sysmond" | docker run -i -a stdin $IMAGE /bin/bash -c "cat > /app/.newrelic-sysmond" )
+	test $(docker wait $id) -eq 0
+	docker commit $id $IMAGE > /dev/null
+	# Run script
+	id=$(docker run-sysmond -d $IMAGE /bin/bash -c "chmod +x /app/.newrelic-sysmond && /app/.newrelic-sysmond")
+	docker attach $id
+	test $(docker wait $id) -eq 0
+	docker commit $id $IMAGE > /dev/null
+
+fi

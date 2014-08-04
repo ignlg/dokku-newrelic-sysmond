@@ -9,6 +9,7 @@ On your _dokku_ server:
 git clone https://github.com/ignlg/dokku-newrelic-sysmond.git /var/lib/dokku/plugins/newrelic-sysmond
 ```
 
-## Configuration
+## Environment variables
 
-`NEW_RELIC_LICENSE_KEY` environment variable.
+`NEW_RELIC_SYSMOND_DOKKU` with `1` to run this plugin.
+`NEW_RELIC_LICENSE_KEY` with your New Relic License Key.
