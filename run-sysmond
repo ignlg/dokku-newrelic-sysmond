@@ -16,7 +16,7 @@ else
 	echo '       No app-env.sh found'
 fi
 
-if [[ $NEW_RELIC_SYSMOND_DOKKU=1 -eq 1 ]]; then
+if [[ $NEW_RELIC_SYSMOND_DOKKU -eq 1 ]]; then
 	echo "-----> Installing New Relic server monitoring"
 	if [[ -n "$NEW_RELIC_LICENSE_KEY" ]]; then
 		## Add the New Relic apt repository
