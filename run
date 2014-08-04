@@ -1,0 +1,40 @@
+#!/bin/bash
+#
+# Installs and starts the New Relic's sysmond daemon
+#
+
+# app directory
+if [[ ! -d "/app" ]]; then
+	echo '       Error: No app found'
+	exit 1
+fi
+
+# env rules
+if [[ -f "./app/.profile.d/app-env.sh" ]]; then
+	. ./app/.profile.d/app-env.sh
+else
+	echo '       No app-env.sh found'
+fi
+
+if [[ -n "$NEW_RELIC_LICENSE_KEY" ]]; then
+	## Add the New Relic apt repository
+	### Configure the New Relic apt repository.
+	echo deb http://apt.newrelic.com/debian/ newrelic non-free >> /etc/apt/sources.list.d/newrelic.list
+	### Trust the New Relic GPG key.
+	wget -O- https://download.newrelic.com/548C16BF.gpg | apt-key add -
+	### Update the local package list.
+	apt-get update
+
+	## Install the Server Monitor package
+	### Run the install command:
+	apt-get install newrelic-sysmond
+
+	## Configure & start the Server Monitor daemon
+	### Add license key to config file: (See /etc/newrelic/nrsysmond.cfg for other config options)
+	nrsysmond-config --set "license_key=$NEW_RELIC_LICENSE_KEY"
+	### Start the daemon
+	/etc/init.d/newrelic-sysmond start
+else
+	## License key not found
+	echo "       Warning: License key not found. Add NEW_RELIC_LICENSE_KEY to your environment variables."
+fi
