@@ -19,6 +19,8 @@ dokku plugins-install
 
 `NEW_RELIC_SYSMOND_DOKKU` set to `1` to start the daemon on deploy.
 
+### Required patch
+In order to avoid running a new monitor with every `dokku run APP COMMAND`, the [Dokku's PR #645 patch](https://github.com/progrium/dokku/pull/645) must be applied.
+
 ## Issues
-* Runs a new monitor with every new container, even for a `docker run ... ls`
-* Unnamed containers/servers
+* Unnamed containers/servers <-- fixable with [dokku-name](https://github.com/alex-sherwin/dokku-name) plugin
