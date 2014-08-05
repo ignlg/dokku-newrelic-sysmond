@@ -22,4 +22,3 @@ dokku plugins-install
 ## Issues
 * Runs a new monitor with every new container, even for a `docker run ... ls`
 * Unnamed containers/servers
-* No process list
