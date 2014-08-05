@@ -1,14 +1,15 @@
 # New Relic's Server Monitoring plugin for Dokku
 
-*Note*: This is just an experiment so use it carefully and at your own risk. Any contribution will be really appreciated.
+**Warning**: This is just an _experiment_ so use it carefully and at your own risk. Any contribution will be really appreciated.
 
-Sets up and starts [New Relic's server monitoring](http://newrelic.com/server-monitoring) daemon `sysmond` into the docker container that runs your app.
+Sets up and starts a [New Relic's server monitoring](http://newrelic.com/server-monitoring) daemon `sysmond` into the docker container that runs the app.
 
 ## Installation
 
-On your _dokku_ server:
+On the _dokku_ server:
 ```sh
 git clone https://github.com/ignlg/dokku-newrelic-sysmond.git /var/lib/dokku/plugins/newrelic-sysmond
+dokku plugins-install
 ```
 
 ## Setup
