@@ -10,8 +10,8 @@ git clone https://github.com/ignlg/dokku-newrelic-sysmond.git /var/lib/dokku/plu
 ```
 
 ## Setup
-### Environment variables
-
-`NEW_RELIC_SYSMOND_DOKKU` with `1` to install, set and run the daemon.
+### Required environment variables
 
 `NEW_RELIC_LICENSE_KEY` with your New Relic License Key.
+
+`NEW_RELIC_SYSMOND_DOKKU` with `1` to start the daemon on deploy.

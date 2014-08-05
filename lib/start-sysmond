@@ -1,3 +1,5 @@
 #!/bin/bash
-### Start the daemon
-/etc/init.d/newrelic-sysmond start
+if [[ "x$NEW_RELIC_SYSMOND_DOKKU" == "x1" ]]; then
+	### Start the daemon
+	/etc/init.d/newrelic-sysmond start
+fi
