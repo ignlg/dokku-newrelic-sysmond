@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
+
+STDIN=$(cat)
+APP="$1"
+
+output="-e NEW_RELIC_SYSMOND_DOKKU_START=1"
+echo "$STDIN$output"

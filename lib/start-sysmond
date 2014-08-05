@@ -1,5 +1,10 @@
 #!/bin/bash
-if [[ "x$NEW_RELIC_SYSMOND_DOKKU" == "x1" ]]; then
-	### Start the daemon
-	/etc/init.d/newrelic-sysmond start
+
+# Deployment?
+if [[ "x$NEW_RELIC_SYSMOND_DOKKU_START" == "x1" ]]; then
+	# Enabled?
+	if [[ "x$NEW_RELIC_SYSMOND_DOKKU" == "x1" ]]; then
+		### Start the daemon
+		/etc/init.d/newrelic-sysmond start
+	fi
 fi
