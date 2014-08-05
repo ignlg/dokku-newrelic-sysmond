@@ -6,13 +6,22 @@ APP="$1"
 IMAGE="dokku/$APP"
 PLUGIN_DIR=$(dirname $0)
 
-# Inject script
-id=$(cat "$PLUGIN_DIR/run-sysmond" | docker run -i -a stdin $IMAGE /bin/bash -c "cat > /app/.run-sysmond" )
+# Inject install script
+id=$(cat "$PLUGIN_DIR/lib/install-sysmond" | docker run -i -a stdin $IMAGE /bin/bash -c "cat > /app/.install-sysmond" )
+test $(docker wait $id) -eq 0
+docker commit $id $IMAGE > /dev/null
+# Make it executable
+id=$(docker run -d $IMAGE /bin/bash -c "chmod +x /app/.install-sysmond")
+docker attach $id
+test $(docker wait $id) -eq 0
+docker commit $id $IMAGE > /dev/null
+# Run it
+id=$(docker run -d $IMAGE /bin/bash -c "/app/.install-sysmond")
+docker attach $id
 test $(docker wait $id) -eq 0
 docker commit $id $IMAGE > /dev/null
 
-# Run script
-id=$(docker run -d $IMAGE /bin/bash -c "chmod +x /app/.run-sysmond && /app/.run-sysmond")
-docker attach $id
+# Inject start script
+id=$(cat "$PLUGIN_DIR/lib/start-sysmond" | docker run -i -a stdin $IMAGE /bin/bash -c "cat > /app/.profile.d/start-sysmond" )
 test $(docker wait $id) -eq 0
 docker commit $id $IMAGE > /dev/null

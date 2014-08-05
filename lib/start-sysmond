@@ -1,0 +1,3 @@
+#!/bin/bash
+### Start the daemon
+/etc/init.d/newrelic-sysmond start
