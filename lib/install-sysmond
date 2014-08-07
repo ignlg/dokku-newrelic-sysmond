@@ -21,7 +21,7 @@ if [[ $NEW_RELIC_SYSMOND_DOKKU -eq 1 ]]; then
 	if [[ -n "$NEW_RELIC_LICENSE_KEY" ]]; then
 		## Add the New Relic apt repository
 		### Configure the New Relic apt repository.
-		echo deb http://apt.newrelic.com/debian/ newrelic non-free >> /etc/apt/sources.list.d/newrelic.list
+		echo deb http://apt.newrelic.com/debian/ newrelic non-free > /etc/apt/sources.list.d/newrelic.list
 		### Trust the New Relic GPG key.
 		wget -O- https://download.newrelic.com/548C16BF.gpg | apt-key add - > /dev/null
 		### Update the local package list.
