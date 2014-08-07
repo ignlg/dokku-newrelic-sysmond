@@ -23,4 +23,4 @@ dokku plugins-install
 In order to avoid running a new monitor with every `dokku run APP COMMAND`, the [Dokku's PR #645 patch](https://github.com/progrium/dokku/pull/645) must be applied.
 
 ## Issues
-* Unnamed containers/servers <-- fixable with [dokku-name](https://github.com/alex-sherwin/dokku-name) plugin
+* Unnamed containers/servers (Trying to fix it with [dokku-name](https://github.com/alex-sherwin/dokku-name) plugin)
